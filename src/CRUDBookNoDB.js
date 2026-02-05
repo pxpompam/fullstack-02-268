@@ -32,6 +32,9 @@ let books = [
 // app.get('/', (req,res) => {
 //     res.send('Hello Books World');
 // });
+app.get('/', (req,res) => {
+    res.send("Hello book");
+});
 
 app.get('/books', (req,res) => {
     res.json(books);
@@ -73,5 +76,5 @@ app.delete('/books/:id', (req, res) => {
     res.send(book);
 });
 
-const port = process.env.PORT || 7000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
