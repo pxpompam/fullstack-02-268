@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books</title>
+</head>
+<body>
+    <h1>Books</h1>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Actions</th>
+        </tr>
+        <% for(var i=0; i< books.length; i++) { %>
+        <tr>
+            <td><%= book[i].title %></td>
+            <td><%= book[i].author %></td>
+            <td>
+                <a href="/book/<%= book[i].id %>">View</a>
+                <a href="/update/<%= book[i].id %>">Edit</a>
+                <a href="/delete/<%= book[i].id %>">Delete</a>
+            </td>
+        </tr>
+        <% } %>
+    </table>
+    <a href="/create">Create new Book</a>
+</body>
+</html>
