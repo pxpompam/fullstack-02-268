@@ -9,7 +9,7 @@ const path = require("path");
 
 //
 //
-const base_url = "http://localhost:3000/";
+const base_url = "http://localhost:3000";
 
 //
 app.set("views", path.join(__dirname, "/public/views"));
@@ -22,7 +22,7 @@ app.use(express.static(__dirname + "/public"));
 
 app.get("/", async(req,res) => {
     try {
-        const response = await axios.get(base_url +'/book');
+        const response = await axios.get(base_url + "/books");
         res.render("books", {books: response.data});
     } catch (err) {
         console.error(err);
@@ -32,7 +32,7 @@ app.get("/", async(req,res) => {
 
 app.get("/book/:id", async (req,res) => {
     try {
-        const response = await axios.get(base_url + '/book/' + req.params.id);
+        const response = await axios.get(base_url + "/books/" + req.params.id);
         res.render("book", {book: response.data});
     } catch (err) {
         console.error(err);
@@ -46,7 +46,7 @@ app.get("/create", (req,res) => {
 
 app.post("/create",async (req,res) => {
     try {
-        const data = {title: req.body.title, author: req.readableObjectMode.author };
+        const data = { title: req.body.title, author: req.body.author };
         await axios.post(base_url + '/books',data);
         res.redirect("/");
     } catch (err) {
@@ -58,7 +58,7 @@ app.post("/create",async (req,res) => {
 app.get("/update/:id", async (req,res) => {
     try {
         const response = await axios.get(
-        base_url +'/book' + req.params.id);
+        base_url + "/books/" + req.params.id);
         res.render("update", {books: response.data});
     } catch (err) {
         console.error(err);
@@ -69,8 +69,8 @@ app.get("/update/:id", async (req,res) => {
 app.post("/update/:id", async (req,res) => {
     try {
         const data = { title: req.body.title, author: req.body.author};
-        await axios.get(base_url +'/book/' + req.params.id);
-        res.render("/");
+        await axios.put(base_url + "/books/" + req.params.id, data);
+        res.redirect("/");
     } catch (err) {
         console.error(err);
         res.status(500).send('Error');
@@ -79,7 +79,7 @@ app.post("/update/:id", async (req,res) => {
 
 app.get("/delete/:id", async (req,res) => {
     try {
-        await axios.delete(base_url + '/book/' + req.params.id);
+        await axios.delete(base_url + "/books/" + req.params.id);
             res.redirect("/")
     } catch (err) {
         console.error(err);
