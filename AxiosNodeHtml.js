@@ -59,7 +59,7 @@ app.get("/update/:id", async (req,res) => {
     try {
         const response = await axios.get(
         base_url + "/books/" + req.params.id);
-        res.render("update", {books: response.data});
+        res.render("update", {book: response.data});
     } catch (err) {
         console.error(err);
         res.status(500).send('Error');

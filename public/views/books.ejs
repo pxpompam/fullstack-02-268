@@ -15,12 +15,12 @@
         </tr>
         <% for(var i=0; i< books.length; i++) { %>
         <tr>
-            <td><%= book[i].title %></td>
-            <td><%= book[i].author %></td>
+            <td><%= books[i].title %></td>
+            <td><%= books[i].author %></td>
             <td>
-                <a href="/book/<%= book[i].id %>">View</a>
-                <a href="/update/<%= book[i].id %>">Edit</a>
-                <a href="/delete/<%= book[i].id %>">Delete</a>
+                <a href="/book/<%= books[i].id %>">View</a>
+                <a href="/update/<%= books[i].id %>">Edit</a>
+                <a href="/delete/<%= books[i].id %>">Delete</a>
             </td>
         </tr>
         <% } %>
